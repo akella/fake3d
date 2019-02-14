@@ -13,36 +13,56 @@ After introductory paragraph:
 <!-- ===================================== -->
 <!-- For contributors writing the article: -->
 
-If you are writing the article directly in WordPress, please use the "text" editor in WordPress instead of the "visual" one, especially if you are planning to write code.
+<p>So shaders and WebGL are a big thing lately. You might have seen beautiful <a href="https://tympanus.net/codrops/2019/02/06/text-distortion-effects-using-blotter-js/">Blotter Effects</a> demo or <a href='https://tympanus.net/codrops/2019/01/08/animated-mesh-lines/'>Animated Mesh Lines</a> demo. Both of those rely on WebGL. This effect is no exception.</p>
 
-<h2>Section headline</h2>
+<p>You might have also seen latest <a href="#">Facebook update with 3D photos</a>. Although they use special phone cameras, we can still do the same effect with any beautiful photo, and a little bit of coding. So let's dig in.</p>
 
-<h3>Sub-section headline</h3>
+<p>Usually these kind of effects rely on either Three.js or Pixi.js framework, both are amazing, more than 500kb of a bundle, very popular, have a lot of interesting stuff inside. But usually we dont really need most of it. </p>
+<h2>Set up</h2>
+<p>So for the sake of simplicity, i decided to go with native API. I dived into wonderful <a href="https://webglfundamentals.org">webglfundamentals.org</a> and created a simple native WebGL demo. This technology usually "praised" for its verboseness. And there is a reason for that.</p>
+<p>The fundament of all fullcreen shader effects, even if they are 2d, is some sort of plane or mesh, or so called quad, that's stretched for the whole screen. So, speaking of being verbose, instead of pretty understandable THREE.PlaneGeometry(1,1), which creates the 1x1 plane, here is what we see in native code:</p>
 
-For code snippets replace < and > with &lt; and &gt;
+<pre class="brush:js">
+	let vertices = new Float32Array([
+	  -1, -1,
+	  1, -1,
+	  -1, 1,
+	  1, 1,
+	])
+	let buffer = gl.createBuffer();
+	gl.bindBuffer( gl.ARRAY_BUFFER, buffer );
+	gl.bufferData( gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW );
+</pre>
+<p>Not so straightforward at all, right? :). So i'll save you some time, long story short: we can get that same plane in native code, and apply vertex and fragment shaders to it. You can still follow the long story at <a href="https://webglfundamentals.org">webglfundamentals.org</a>.</p>
+<h2>Prepare images</h2>
+photoshop story
+All this coloring will make sense in next part.
+<h2>Shaders</h2>
+<p>Rendering logic is mostly happening in shaders. We only have two of them: vertex and fragment. (To read more about shaders check out <a href="https://thebookofshaders.com">The Book Of Shaders</a>) <br>
+The vertex shader will not do much, just showing our vertices:</p>
+<pre class="brush:glsl">attribute vec2 position;
+void main() {
+  gl_Position = vec4( position, 0, 1 );
+}</pre>
 
-Example for HTML:
+<p>The most interesting part will happen in a fragment shader. Let's load two images there:</p>
+<pre class="brush:glsl">void main(){
+	vec4 depth = texture2D(depthImage,uv);
+	gl_FragColor = texture2D(originalImage,uv);
+}</pre>
+<p>Remember, the depth image is just black and white. For shaders, color is just a number, 1 is white, 0 is pitch black. Another thing to remember: uv is a two dimensional map storing information about which pixel to show. those two facts together mean: we can use depth information to move pixels of original photo a little bit:
+<pre class="brush:glsl">void main(){
+	vec4 depth = texture2D(depthImage,uv);
+	gl_FragColor = texture2D(originalImage,uv + mouse*depth.r);
+}</pre>
+<p>Because the texture is black and white, we can just take red channel, and multiply it my mouse position on screen. That means the brighter pixel is – the more it will move with a mouse. And on the other side: dark pixels will just stay in place. It's very simple, yet, it gives us nice 3D illusion on the images.<br>
+Of course, shaders are capable of doing crazy things, but i hope you liked this small introduction into faking 3D.</p>
 
-<pre class="brush:html"><code>
-&lt;div class="st-container"&gt;
-&lt;/div&gt;&lt;!-- // st-container --&gt;
-</code></pre>
 
-Example for CSS:
 
-<pre class="brush:css"><code>
-body {
-  background: #000;
-}
-</code></pre>
 
-Example for JavaScript:
 
-<pre class="brush:js"><code>
-  ...
-</code></pre>
 
-Available brushes for code hightlighting: html, scss, css, js, xml, php, mysql or any other if needed: https://highlightjs.org/
 
 Images can be a maximum of 890px wide (this will fill all the width of the article).
 
@@ -56,12 +76,11 @@ In-article ad:
 [adrotate group="2"]
 
 
-Optional browser support icons shortcode:
-[browsersupport chrome="all" safari="all" opera="all" firefox="flag" ie="9+"]
-(If a browser is not supported at all, just leave it out)
-
 <!-- Can be added in the end of the article -->
 <h2>References and Credits</h2>
 <ul>
-  <li><a href="">Some resource</a></li>
+  <li><a href='https://github.com/dorukeker/gyronorm.js/'>Gyronorm</a> library by <a href="http://dorukeker.com">Doruk Eker</a></li>
+  <li>Photo by <a href="https://unsplash.com/photos/YK_8mABhrtc">Cosmic Timetraveler</a></li>
+  <li>Photo by <a href="https://unsplash.com/photos/WJRZNL7rDF8">Chelsea Ferenando</a></li>
+  <li>Photo by <a href="https://unsplash.com/photos/JnOHvMgw_Jo">Rio Syhputra</a></li>
 </ul>

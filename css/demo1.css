@@ -1,1 +1,15 @@
 /* Individual styles for demo 1 */
+body{
+	overscroll-behavior: none
+}
+#gl{
+	width: 100vw;
+	height: 100vh;
+	left: 0;
+	top: 0;
+	position: fixed;
+	z-index: -1;
+}
+canvas{
+	display: block
+}

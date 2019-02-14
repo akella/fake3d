@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Demoname | Demo 1 | Codrops</title>
+		<title>Fake 3D with shaders | Demo 1 | Codrops</title>
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<meta name="author" content="Codrops" />
@@ -15,11 +15,11 @@
 	</head>
 	<body class="demo-1">
 		<main>
-			<div class="message">Some message for mobile if needed.</div>
+			<div class="message">Tilt your phone to see effect.</div>
 			<div class="frame">
 				<div class="frame__title-wrap">
-					<h1 class="frame__title">Title</h1>
-					<p class="frame__tagline">Subtitle</a></p>
+					<h1 class="frame__title">Fake 3D with shaders</h1>
+					<p class="frame__tagline">move your mouse around to see</a></p>
 				</div>
 				<a class="frame__github" href="">GitHub</a>
 				<div class="frame__links">
@@ -29,7 +29,16 @@
 				<div class="frame__demos">
 					<a href="index.html" class="frame__demo">demo 1</a>
 					<a href="index2.html" class="frame__demo frame__demo--current">demo 2</a>
+					<a href="index3.html" class="frame__demo frame__demo--current">demo 3</a>
 				</div>
+				<div 
+					id="gl" 
+					data-imageOriginal="img/mount.jpg" 
+					data-imageDepth="img/mount-map.jpg" 
+					data-horizontalThreshold="15" 
+					data-verticalThreshold="25">
+				</div>
+				<script src="js/app.js"></script>
 				<!-- Pater 
 				<a class="pater" href="" rel="nofollow" onClick="recordOutboundLink(this, 'Outbound Links', 'CODEHERE');return false;">
 					<div class="pater__img"><div class="pater__img-inner"></div></div>
