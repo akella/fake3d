@@ -13,9 +13,9 @@ After introductory paragraph:
 <!-- ===================================== -->
 <!-- For contributors writing the article: -->
 
-<p>So shaders and WebGL are a big thing lately. You might have seen beautiful <a href="https://tympanus.net/codrops/2019/02/06/text-distortion-effects-using-blotter-js/">Blotter Effects</a> demo or <a href='https://tympanus.net/codrops/2019/01/08/animated-mesh-lines/'>Animated Mesh Lines</a> demo. Both of those rely on WebGL. This effect is no exception.</p>
+<p>So shaders and WebGL are a big thing lately. You might have seen beautiful <a href="https://tympanus.net/codrops/2019/02/06/text-distortion-effects-using-blotter-js/">Blotter Effects</a> demo or <a href='https://tympanus.net/codrops/2019/01/08/animated-mesh-lines/'>Animated Mesh Lines</a> demo. Both of these rely on WebGL. This effect is no exception.</p>
 
-<p>You might have also seen latest <a href="#">Facebook update with 3D photos</a>. Although they use special phone cameras, we can still do the same effect with any beautiful photo, and a little bit of coding. So let's dig in.</p>
+<p>You might have also seen latest <a href="https://facebook360.fb.com/2018/10/11/3d-photos-now-rolling-out-on-facebook-and-in-vr/">Facebook update with 3D photos</a>. Although they use special phone cameras, we can still do the same effect with any beautiful photo, and a little bit of coding. So let's dig in.</p>
 
 <p>Usually these kind of effects rely on either Three.js or Pixi.js framework, both are amazing, more than 500kb of a bundle, very popular, have a lot of interesting stuff inside. But usually we dont really need most of it. </p>
 <h2>Set up</h2>
@@ -35,14 +35,14 @@ After introductory paragraph:
 </pre>
 <p>Not so straightforward at all, right? :). So i'll save you some time, long story short: we can get that same plane in native code, and apply vertex and fragment shaders to it. You can still follow the long story at <a href="https://webglfundamentals.org">webglfundamentals.org</a>.</p>
 <h2>Prepare images</h2>
-<p>The main principle for building depthmap: we got to separate parts of the image depending on there Z position: far-close.</p>
-<p>So to make that, i opened a Photoshop, and painted a bunch of gray areas over the original photo:</p>
+<p>The main principle for building depthmap: we've got to separate parts of the image depending on there Z position: far-close.</p>
+<p>So to make that, i opened image in Photoshop, and painted a bunch of gray areas over the original photo:</p>
 <video src="img/gif.mp4" muted loop></video>
-<p>This one is an example of mountains, you can see that the further object is from camera, the brighter it is in depthmap.<br>
+<p>This one is an example of mountains, you can see that the closer object is to camera, the brighter it is in depthmap.<br>
 All this coloring will make sense in next part.</p>
 <h2>Shaders</h2>
-<p>Rendering logic is mostly happening in shaders. We only have two of them: vertex and fragment. (To read more about shaders check out <a href="https://thebookofshaders.com">The Book Of Shaders</a>) <br>
-The vertex shader will not do much, just showing our vertices:</p>
+<p>Rendering logic is mostly happening in shaders. We only have two of them: vertex and fragment. (To learn more about shaders check out <a href="https://thebookofshaders.com">The Book Of Shaders</a>) <br>
+The vertex shader will not do much, just shows our vertices:</p>
 <pre class="brush:glsl">attribute vec2 position;
 void main() {
   gl_Position = vec4( position, 0, 1 );
@@ -51,15 +51,15 @@ void main() {
 <p>The most interesting part will happen in a fragment shader. Let's load two images there:</p>
 <pre class="brush:glsl">void main(){
 	vec4 depth = texture2D(depthImage,uv);
-	gl_FragColor = texture2D(originalImage,uv);
+	gl_FragColor = texture2D(originalImage,uv); // showing original photo
 }</pre>
-<p>Remember, the depth image is just black and white. For shaders, color is just a number, 1 is white, 0 is pitch black. Another thing to remember: uv is a two dimensional map storing information about which pixel to show. those two facts together mean: we can use depth information to move pixels of original photo a little bit:
+<p>Remember, the depth image is just black and white. For shaders, color is just a number, 1 is white, 0 is pitch black. Another thing to remember: uv is a two dimensional map storing information about which pixel to show. those two facts together mean: we can use depth information to move pixels of original photo a little bit:</p>
 <pre class="brush:glsl">
 	vec4 depth = texture2D(depthImage,uv);
 	gl_FragColor = texture2D(originalImage,uv + mouse*depth.r);
 </pre>
-<p>Because the texture is black and white, we can just take red channel (<code>depth.r</code>), and multiply it my mouse position on screen. That means the brighter pixel is – the more it will move with a mouse. And on the other side: dark pixels will just stay in place. It's very simple, yet, it gives us nice 3D illusion on the images.<br>
-Of course, shaders are capable of doing all the other crazy things, but i hope you liked this small introduction into faking 3D.</p>
+<p>Because the texture is black and white, we can just take red channel (<code>depth.r</code>), and multiply it my mouse position on screen. That means the brighter pixel is – the more it will move with a mouse. And on the other side: dark pixels will just stay in place. It's very simple, yet, it gives us nice 3D illusion on the images.</p>
+<p>Of course, shaders are capable of doing all the other crazy things, but i hope you liked this small introduction into faking 3D.</p>
 
 
 
