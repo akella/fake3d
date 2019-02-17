@@ -37,7 +37,7 @@ After introductory paragraph:
 <h2>Prepare images</h2>
 <p>The main principle for building depthmap: we've got to separate parts of the image depending on there Z position: far-close.</p>
 <p>So to make that, i opened image in Photoshop, and painted a bunch of gray areas over the original photo:</p>
-<video src="img/gif.mp4" muted loop></video>
+<video src="img/gif.mp4" muted loop autoplay></video>
 <p>This one is an example of mountains, you can see that the closer object is to camera, the brighter it is in depthmap.<br>
 All this coloring will make sense in next part.</p>
 <h2>Shaders</h2>
@@ -50,16 +50,26 @@ void main() {
 
 <p>The most interesting part will happen in a fragment shader. Let's load two images there:</p>
 <pre class="brush:glsl">void main(){
-	vec4 depth = texture2D(depthImage,uv);
-	gl_FragColor = texture2D(originalImage,uv); // showing original photo
+	vec4 depth = texture2D(depthImage, uv);
+	gl_FragColor = texture2D(originalImage, uv); // just showing original photo
 }</pre>
-<p>Remember, the depth image is just black and white. For shaders, color is just a number, 1 is white, 0 is pitch black. Another thing to remember: uv is a two dimensional map storing information about which pixel to show. those two facts together mean: we can use depth information to move pixels of original photo a little bit:</p>
+<p>Remember, the depth image is just black and white. For shaders, color is just a number, 1 is white, 0 is pitch black.<br> Another thing to remember: uv is a two dimensional map storing information about which pixel to show. those two facts together mean: we can use depth information to move pixels of original photo a little bit:</p>
+<p>Let's start with a mouse movement:</p>
 <pre class="brush:glsl">
-	vec4 depth = texture2D(depthImage,uv);
-	gl_FragColor = texture2D(originalImage,uv + mouse*depth.r);
+	vec4 depth = texture2D(depthImage, uv);
+	gl_FragColor = texture2D(originalImage, uv + mouse);
 </pre>
-<p>Because the texture is black and white, we can just take red channel (<code>depth.r</code>), and multiply it my mouse position on screen. That means the brighter pixel is – the more it will move with a mouse. And on the other side: dark pixels will just stay in place. It's very simple, yet, it gives us nice 3D illusion on the images.</p>
-<p>Of course, shaders are capable of doing all the other crazy things, but i hope you liked this small introduction into faking 3D.</p>
+<p>Here is how it looks like:</p>
+<video src="img/gif2.mp4" muted loop autoplay></video>
+Now let's add our depth!
+<pre class="brush:glsl">
+	vec4 depth = texture2D(depthImage, uv);
+	gl_FragColor = texture2D(originalImage, uv + mouse*depth.r);
+</pre>
+<p>And here we are:</p>
+<video src="img/gif3.mp4" muted loop autoplay></video>
+<p>Because the texture is black and white, we can just take red channel (<code>depth.r</code>), and multiply it my mouse position on screen. That means the brighter pixel is – the more it will move with a mouse. And on the other side: dark pixels will just stay in place. It's very simple, yet, it results in a nice 3D illusion on the images.</p>
+<p>Of course, shaders are capable of doing all the other crazy things, but i hope you liked this small introduction into faking 3D. Let me know what you think about it, and your creative ideas!</p>
 
 
 
