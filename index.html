@@ -3,49 +3,44 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Fake 3D with shaders | Demo 1 | Codrops</title>
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
+		<title>Fake 3D Effect with WebGL Shaders | Demo 1 | Codrops</title>
+		<meta name="description" content="Demo of the tutorial on how to create a fake 3D image effect with WebGL shaders." />
+		<meta name="keywords" content="webgl, 3d, image, shader, javascript, tutorial, demo, web development, effect" />
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" href="https://use.typekit.net/dat1mce.css">
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
-		<link rel="stylesheet" type="text/css" href="css/demo1.css" />
 		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
 		<!--script src="//tympanus.net/codrops/adpacks/analytics.js"></script-->
 	</head>
 	<body class="demo-1">
 		<main>
-			<div class="message">Tilt your phone to see effect.</div>
+			<div class="message">Tilt your phone to see the effect.</div>
 			<div class="frame">
+				<div 
+					id="gl" 
+					data-imageOriginal="img/lady.jpg" 
+					data-imageDepth="img/lady-map.jpg" 
+					data-horizontalThreshold="35" 
+					data-verticalThreshold="15">
+				</div>
 				<div class="frame__title-wrap">
-					<h1 class="frame__title">Fake 3D with shaders</h1>
-					<p class="frame__tagline">move your mouse around to see</a></p>
+					<h1 class="frame__title">Fake 3D Effect with Shaders</h1>
+					<p class="frame__tagline">Move your mouse around.</a></p>
 				</div>
-				<a class="frame__github" href="">GitHub</a>
 				<div class="frame__links">
-					<a href="">Previous Demo</a>
-					<a href="">Article</a>
+					<a href="https://tympanus.net/Development/GridRevealEffects/">Previous Demo</a>
+					<a href="https://tympanus.net/codrops/?p=38413">Article</a>
 				</div>
+				<a class="frame__github" href="https://github.com/akella/fake3d">GitHub</a>
 				<div class="frame__demos">
 					<a href="index.html" class="frame__demo frame__demo--current">demo 1</a>
 					<a href="index2.html" class="frame__demo">demo 2</a>
 					<a href="index3.html" class="frame__demo">demo 3</a>
 				</div>
-				<div 
-					id="gl" 
-					data-imageOriginal="img/mount.jpg" 
-					data-imageDepth="img/mount-map.jpg" 
-					data-horizontalThreshold="15" 
-					data-verticalThreshold="25">
-				</div>
-				<script src="js/app.js"></script>
-				<!-- Pater 
-				<a class="pater" href="" rel="nofollow" onClick="recordOutboundLink(this, 'Outbound Links', 'CODEHERE');return false;">
-					<div class="pater__img"><div class="pater__img-inner"></div></div>
-					<h3 class="pater__title"></h3>
-					<p class="pater__description"></p>
-				</a>-->
+				<div class="frame__content">QO</div>
 			</div>
 		</main>
+		<script src="js/app.js"></script>
 	</body>
 </html>

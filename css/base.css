@@ -12,13 +12,36 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 body {
 	--color-text: #fff;
 	--color-bg: #0e0e0f;
-	--color-link: #0f51e4;
-	--color-link-hover: #ebd944;
+	--color-link: #826437;
+	--color-link-hover: #fff;
 	color: var(--color-text);
 	background-color: var(--color-bg);
 	font-family: Futura, "futura-pt", Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	overscroll-behavior: none;
+}
+
+.demo-1, 
+.demo-3 {
+	font-family: moderno-fb, "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif;
+}
+
+.demo-2,
+.demo-3 {
+    --color-link: #fbc966;
+}
+
+#gl {
+	width: 100vw;
+	height: 100vh;
+	left: 0;
+	top: 0;
+	position: absolute;
+}
+
+canvas {
+	display: block;
 }
 
 /* Page Loader */
@@ -72,6 +95,10 @@ a:focus {
 	background: var(--color-text);
 	color: var(--color-bg);
 	padding: 1rem;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 10000;
 	text-align: center;
 }
 
@@ -80,23 +107,36 @@ a:focus {
 	text-align: center;
 	position: relative;
 	z-index: 1000;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.frame > * {
+	position: relative;
 }
 
 .frame__title {
-	font-size: 1rem;
-	margin: 0 0 1rem;
+	font-size: 1.25rem;
+	margin: 0;
 	font-weight: normal;
 }
 
+.frame__tagline {
+	display: none;
+	margin: 0.5rem 0 2rem;
+}
+
 .frame__links {
-	display: inline;
+	margin: 1rem 0;
 }
 
 .frame a {
 	text-transform: lowercase;
 }
 
-.frame__github,
 .frame__links a:not(:last-child),
 .frame__demos a:not(:last-child) {
 	margin-right: 1rem;
@@ -111,14 +151,31 @@ a:focus {
 	color: var(--color-text);
 }
 
-.content {
-	display: flex;
-	flex-direction: column;
-	width: 100vw;
-	height: calc(100vh - 13rem);
-	position: relative;
-	justify-content: flex-start;
-	align-items: center;
+.frame__content {
+	line-height: 0.8;
+	pointer-events: none;
+	margin-top: 13vh;
+}
+
+.demo-1 .frame__content,
+.demo-3 .frame__content {
+	font-size: 40vw;
+	font-family: essonnes-display, serif;
+	mix-blend-mode: soft-light;
+	font-weight: normal;
+	text-align: center;
+	color: #c2ba8b;
+}
+
+.demo-2 .frame__content {
+	font-size: 9vw;
+	text-transform: uppercase;
+	font-weight: bold;
+	mix-blend-mode: soft-light;
+}
+
+.demo-3 .frame__content {
+	color: #24211d;
 }
 
 @media screen and (min-width: 53em) {
@@ -136,12 +193,12 @@ a:focus {
 		width: 100%;
 		max-width: none;
 		height: 100vh;
-		padding: 3rem;
+		padding: 2rem 3rem;
 		pointer-events: none;
 		grid-template-columns: 75% 25%;
 		grid-template-rows: auto auto auto;
 		grid-template-areas: 'title links'
-							'... ...'
+							'content content'
 							'github demos';
 	}
 	.frame__title-wrap {
@@ -149,13 +206,14 @@ a:focus {
 		display: flex;
 	}
 	.frame__title {
+		font-size: 1rem;
 		margin: 0;
 	}
 	.frame__tagline {
-		position: relative;
 		margin: 0 0 0 1rem;
 		padding: 0 0 0 1rem;
-		opacity: 0.5;
+		opacity: 0.6;
+		display: block;
 	}
 	.frame__github {
 		grid-area: github;
@@ -172,11 +230,11 @@ a:focus {
 		padding: 0;
 		justify-self: end;
 	}
+	.frame__content {
+		grid-area: content;
+		margin: 0;
+	}
 	.frame a {
 		pointer-events: auto;
-	}
-	.content {
-		height: 100vh;
-		justify-content: center;
 	}
 }
