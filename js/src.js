@@ -199,10 +199,6 @@ export default class Sketch {
       // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device
     });
 
-
-
-
-
   }
 
   mouseMove() {

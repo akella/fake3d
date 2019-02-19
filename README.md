@@ -1,30 +1,26 @@
-## How to use this template:
+# Fake 3D Image Effect with WebGL
 
-- The general styles for the demo page are in css/base.css and individual styles go into the css/demoN.css
-- The README.md should be used to add credits and licensing information of resources used
-- For writing the tutorial, take a look at some guidelines in article.html
-- Delete this 'how to' in the final version and leave the following (fill in title/description, credits and social links):
-
-# The Title
-
-*Description*, *author*
+An interactive "fake" 3D effect for images with plain WebGL.
 
 ![Image Title](link)
 
-[Article on Codrops](https://tympanus.net/codrops/?p=)
+[Article on Codrops](https://tympanus.net/codrops/?p=38413)
 
-[Demo](http://tympanus.net/Development/.../)
+[Demo](http://tympanus.net/Tutorials/fake3d/)
 
 ## Credits
 
-*third party resources*
+*   [Gyronorm](https://github.com/dorukeker/gyronorm.js/) library by [Doruk Eker](http://dorukeker.com)
+*   Photo by [Cosmic Timetraveler](https://unsplash.com/photos/YK_8mABhrtc)
+*   Photo by [Chelsea Ferenando](https://unsplash.com/photos/WJRZNL7rDF8)
+*   Photo by [Rio Syhputra](https://unsplash.com/photos/JnOHvMgw_Jo)
 
 ## License
 This resource can be used freely if integrated or build upon in personal or commercial projects such as websites, web apps and web templates intended for sale. It is not allowed to take the resource "as-is" and sell it, redistribute, re-publish it, or sell "pluginized" versions of it. Free plugins built using this resource should have a visible mention and link to the original work. Always consider the licenses of all included libraries, scripts and images used.
 
 ## Misc
 
-Follow *Author*: [Twitter](), [Dribbble](), [Google+](), [GitHub]() 
+Follow akella: [Twitter](https://twitter.com/akella), [Instagram](http://instagram.com/akella_), [Facebook](https://facebook.com/akella), [GitHub](https://github.com/akella) 
 
 Follow Codrops: [Twitter](http://www.twitter.com/codrops), [Facebook](http://www.facebook.com/codrops), [Google+](https://plus.google.com/101095823814290637419), [GitHub](https://github.com/codrops), [Pinterest](http://www.pinterest.com/codrops/), [Instagram](https://www.instagram.com/codropsss/)
 
