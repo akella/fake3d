@@ -2,7 +2,7 @@
 
 An interactive "fake" 3D effect for images with plain WebGL.
 
-![Image Title](link)
+![Fake 3D Image Effect](https://tympanus.net/codrops/wp-content/uploads/2019/02/Fake3dEffect_featured.jpg)
 
 [Article on Codrops](https://tympanus.net/codrops/?p=38413)
 
