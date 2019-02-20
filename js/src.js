@@ -15,7 +15,6 @@ export default class Sketch {
     this.windowHeight = window.innerHeight;
     this.mouseX = 0;
     this.mouseY = 0;
-    // alert(window.innerHeight +'-'+ document.documentElement.clientHeight +'-'+ window.screen.height);
 
     this.mouseTargetX = 0;
     this.mouseTargetY = 0;
