@@ -16,20 +16,23 @@ body {
 	--color-link-hover: #fff;
 	color: var(--color-text);
 	background-color: var(--color-bg);
-	font-family: Futura, "futura-pt", Arial, sans-serif;
+	font-family: moderno-fb, "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overscroll-behavior: none;
 }
 
-.demo-1, 
-.demo-3 {
-	font-family: moderno-fb, "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif;
+.demo-2 {
+	font-family: Futura, "futura-pt", Arial, sans-serif;
 }
 
 .demo-2,
 .demo-3 {
     --color-link: #fbc966;
+}
+
+.demo-4 {
+    --color-link: #52e093;
 }
 
 #gl {
@@ -155,10 +158,6 @@ a:focus {
 	line-height: 0.8;
 	pointer-events: none;
 	margin-top: 13vh;
-}
-
-.demo-1 .frame__content,
-.demo-3 .frame__content {
 	font-size: 40vw;
 	font-family: essonnes-display, serif;
 	mix-blend-mode: soft-light;
@@ -172,10 +171,18 @@ a:focus {
 	text-transform: uppercase;
 	font-weight: bold;
 	mix-blend-mode: soft-light;
+	text-align: left;
+	color: #fff;
+	font-family: Futura, "futura-pt", Arial, sans-serif;
 }
 
 .demo-3 .frame__content {
 	color: #24211d;
+}
+
+.demo-4 .frame__content {
+	color: #75c298;
+	mix-blend-mode: overlay;
 }
 
 @media screen and (min-width: 53em) {

@@ -6,7 +6,7 @@ An interactive "fake" 3D effect for images with plain WebGL.
 
 [Article on Codrops](https://tympanus.net/codrops/?p=38413)
 
-[Demo](http://tympanus.net/Tutorials/fake3d/)
+[Demo](http://tympanus.net/Tutorials/Fake3DEffect/)
 
 ## Credits
 
@@ -14,6 +14,7 @@ An interactive "fake" 3D effect for images with plain WebGL.
 *   Photo by [Cosmic Timetraveler](https://unsplash.com/photos/YK_8mABhrtc)
 *   Photo by [Chelsea Ferenando](https://unsplash.com/photos/WJRZNL7rDF8)
 *   Photo by [Rio Syhputra](https://unsplash.com/photos/JnOHvMgw_Jo)
+*   Phoyo by [Jonatan Pie](https://unsplash.com/photos/3l3RwQdHRHg)
 
 ## License
 This resource can be used freely if integrated or build upon in personal or commercial projects such as websites, web apps and web templates intended for sale. It is not allowed to take the resource "as-is" and sell it, redistribute, re-publish it, or sell "pluginized" versions of it. Free plugins built using this resource should have a visible mention and link to the original work. Always consider the licenses of all included libraries, scripts and images used.
