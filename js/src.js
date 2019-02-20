@@ -30,13 +30,6 @@ export default class Sketch {
     ];
     this.textures = [];
 
-    // colors
-    // #575757
-    // #787878
-    // #a7a7a7
-    // #b7b7b7
-    // #d6d6d6
-    // #f7f7f7
 
     this.startTime = new Date().getTime(); // Get start time for animating
 
@@ -61,7 +54,6 @@ export default class Sketch {
   	this.windowWidth = window.innerWidth;
   	this.windowHeight = window.innerHeight;
     this.width = this.container.offsetWidth;
-    // this.height = this.width/this.aspect;
     this.height = this.container.offsetHeight;
 
     this.canvas.width = this.width*this.ratio;
@@ -88,16 +80,16 @@ export default class Sketch {
   }
 
   createScene() {
-    // create program
+
     this.program = this.gl.createProgram();
-    // add shaders
+
     this.addShader( vertex, this.gl.VERTEX_SHADER );
     this.addShader( fragment, this.gl.FRAGMENT_SHADER );
-    // link & use program
+
     this.gl.linkProgram( this.program );
     this.gl.useProgram( this.program );
 
-    // create fragment uniforms
+
     this.uResolution = new Uniform( 'resolution', '4f' , this.program, this.gl );
     this.uMouse = new Uniform( 'mouse', '2f' , this.program, this.gl );
     this.uTime = new Uniform( 'time', '1f' , this.program, this.gl );
@@ -120,7 +112,7 @@ export default class Sketch {
     let that = this;
     let gl = that.gl;
 
-    // connect images
+
     this.imageAspect = images[0].naturalHeight/images[0].naturalWidth;
     for (var i = 0; i < images.length; i++) {
       
@@ -147,7 +139,6 @@ export default class Sketch {
     this.gl.uniform1i(u_image0Location, 0); // texture unit 0
     this.gl.uniform1i(u_image1Location, 1); // texture unit 1
 
-    // Set each texture unit to use a particular texture.
     this.gl.activeTexture(this.gl.TEXTURE0);
     this.gl.bindTexture(this.gl.TEXTURE_2D, this.textures[0]);
     this.gl.activeTexture(this.gl.TEXTURE1);
@@ -161,25 +152,11 @@ export default class Sketch {
 
 
   gyro() {
-    // this.calibrated = false;
+
     let that = this;
 
     this.maxTilt = 15;
-    // setInterval(() => {
-    //   this.calibrated = false;
-    // },20000);
-
-    // window.addEventListener('deviceorientation', (e) => {
-    //   if(!this.calibrated) {
-    //     this.startBeta = e.beta.toFixed(2);
-    //     this.startGamma = e.gamma.toFixed(2);
-    //     this.calibrated = true;
-    //   }
-    //   // console.log(e.beta.toFixed(1),e.gamma.toFixed(1));
-    //   this.mouseTargetY = clamp(this.startBeta - e.beta,-this.maxTilt, this.maxTilt)/this.maxTilt;
-    //   this.mouseTargetX = -clamp(this.startGamma - e.gamma,-this.maxTilt, this.maxTilt)/this.maxTilt;
-    //   console.log(this.mouseTargetX.toFixed(1),this.mouseTargetY.toFixed(1));
-    // }, true);
+    
 
     const rotationCoef = 0.15;
 
@@ -195,7 +172,7 @@ export default class Sketch {
       });
     }).catch(function(e) {
       console.log('not supported');
-      // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device
+
     });
 
   }
@@ -269,7 +246,6 @@ Uniform.prototype.set = function( ...values ) {
   this.gl[ method ].apply( this.gl, args );
 };
 
-// ----- Rect ----- //
 function Rect( gl ) {
   var buffer = gl.createBuffer();
   gl.bindBuffer( gl.ARRAY_BUFFER, buffer );
